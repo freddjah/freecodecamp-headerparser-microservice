@@ -10,9 +10,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 })
 
-// your first API endpoint... 
-app.get('/api/hello', (req, res) => {
-  res.json({greeting: 'hello API'})
+// Returns browser information. IP, language and user agent.
+app.get('/api/whoami', (req, res) => {
+  res.json({
+    ipaddress: req.ip, 
+    language: req.get('Accept-Language'),
+    software: req.get('User-Agent')
+  })
 })
 
 // listen for requests :)
